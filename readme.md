@@ -24,6 +24,7 @@ for dir in $(find . -name LinuxMakefile); do make -j $(nproc) -C $dir; done
 
 Run the demo application
 ```bash
+make -j $(nproc) -C examples/DemoRunner/Builds/LinuxMakefile && \
 examples/DemoRunner/Builds/LinuxMakefile/build/DemoRunner
 ```
 
