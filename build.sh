@@ -1,7 +1,13 @@
 #!/bin/bash
 
 projects=(
+# Audio
+SynthUsingMidiInputTutorial
+SimpleSynthNoiseTutorial
+
 # DSP
+DSPConvolutionTutorial
+SIMDRegisterTutorial
 SimpleFFTTutorial
 SpectrumAnalyserTutorial
 
@@ -11,9 +17,6 @@ MainComponentTutorial
 GraphicsTutorial
 OpenGLAppTutorial
 )
-
-# Start with a clean build area
-# rm -rf ${projects[@]}
 
 # Fetch all projects
 for project in ${projects[@]}; do
