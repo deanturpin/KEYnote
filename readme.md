@@ -29,7 +29,7 @@ run without a Roli account.
 #endif
 ```
 
-Build the Projucer IDE and the examples
+Build Projucer IDE and the examples.
 ```bash
 for dir in extras/*; do make -j $(nproc) -C $dir/Builds/LinuxMakefile; done
 ```
