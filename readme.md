@@ -29,3 +29,9 @@ make -j $(nproc)
 ```bash
 build/Projucer
 ```
+
+# Build all the examples
+```bash
+cd ~/JUCE/extras
+for dir in *; do echo make -j $(nproc) -C $dir/Builds/LinuxMakefile; done
+```
