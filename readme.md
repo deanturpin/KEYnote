@@ -11,7 +11,7 @@ ladspa-sdk
 
 # Build the IDE and all example projects
 - Clone the library
-- Patch it so it Projucer will run without a Roli account
+- Patch the source so Projucer will run without a Roli account
 - Compile every project that contains a Linux build area
 
 ```bash
@@ -20,6 +20,11 @@ git clone --depth=1 https://github.com/WeAreROLI/JUCE && \
 cd JUCE && \
 sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/JuceLibraryCode/AppConfig.h && \
 for dir in $(find . -name LinuxMakefile); do make -j $(nproc) -C $dir; done
+```
+
+Run the demo application
+```bash
+examples/DemoRunner/Builds/LinuxMakefile/build/DemoRunner
 ```
 
 Run Projucer.
