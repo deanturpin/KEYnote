@@ -1,4 +1,4 @@
-# Dependencies
+# Install dependencies
 ```bash
 sudo apt install -y \
 libfreetype6-dev \
@@ -12,7 +12,7 @@ git clone --depth=1 https://github.com/WeAreROLI/JUCE
 cd JUCE/extras/Projucer/Builds/LinuxMakefile
 ```
 
-# Change this flag so you can run without a Roli account
+## Change this flag so you can run without a Roli account
 ../../JuceLibraryCode/AppConfig.h
 ```c++
 #ifndef JUCER_ENABLE_GPL_MODE
@@ -20,6 +20,7 @@ cd JUCE/extras/Projucer/Builds/LinuxMakefile
 #endif
 ```
 
+# Build
 ```bash
 make -j $(nproc)
 ```
