@@ -58,6 +58,7 @@ for project in ${projects[@]}; do
   exe=$project/Builds/LinuxMakefile/build/$project
 
   if [[ -f $exe ]]; then
+    echo Running $project
     $exe
   fi
 
