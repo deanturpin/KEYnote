@@ -15,7 +15,6 @@ ladspa-sdk
 - Compile every project that contains a Linux build area
 
 ```bash
-cd && \
 git clone --depth=1 https://github.com/WeAreROLI/JUCE && \
 cd JUCE && \
 sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/JuceLibraryCode/AppConfig.h && \
