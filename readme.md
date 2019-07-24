@@ -6,7 +6,8 @@ make \
 libfreetype6-dev \
 libxinerama-dev \
 webkit2gtk-4.0 \
-ladspa-sdk
+ladspa-sdk \
+libasound2-dev
 ```
 
 # Build the IDE and all example projects
