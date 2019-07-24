@@ -10,25 +10,23 @@ ladspa-sdk \
 libasound2-dev
 ```
 
-# Build the IDE and all example projects
-- Clone the library
-- Patch the source so Projucer will run without a Roli account
-- Compile every project that contains a Linux build area
+# Build demo projects and Projucer IDE
 
+Clone the library and patch the source so Projucer will run without a Roli account.
 ```bash
 git clone --depth=1 https://github.com/WeAreROLI/JUCE && \
 cd JUCE && \
-sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/JuceLibraryCode/AppConfig.h && \
-for dir in $(find . -name LinuxMakefile); do make -j $(nproc) -C $dir; done
+sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/JuceLibraryCode/AppConfig.h
 ```
 
-Run the demo application
+Build and run the demo application.
 ```bash
 make -j $(nproc) -C examples/DemoRunner/Builds/LinuxMakefile && \
 examples/DemoRunner/Builds/LinuxMakefile/build/DemoRunner
 ```
 
-Run Projucer.
+Build and run Projucer.
 ```bash
+make -j $(nproc) -C extras/Projucer/Builds/LinuxMakefile && \
 extras/Projucer/Builds/LinuxMakefile/build/Projucer
 ```
