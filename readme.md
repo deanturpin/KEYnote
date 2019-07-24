@@ -2,6 +2,8 @@
 Install dependencies.
 ```bash
 sudo apt install -y \
+g++-8 \
+make \
 libfreetype6-dev \
 libxinerama-dev \
 webkit2gtk-4.0
