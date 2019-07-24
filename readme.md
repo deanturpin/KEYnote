@@ -7,8 +7,10 @@ libxinerama-dev \
 webkit2gtk-4.0
 ```
 
-Build and run examples.
+Clone, build and run examples.
 ```bash
+git clone --depth=1 https://github.com/deanturpin/juce-example-projects && \
+cd juce-example-projects && \
 ./build-example-projects.sh
 ```
 
