@@ -5,8 +5,15 @@ cpus=$(nproc)
 
 projects=(
 # Audio
+PlayingSoundFilesTutorial
+ProcessingAudioInputTutorial
+AudioThumbnailTutorial
+
+# Synth
 SynthUsingMidiInputTutorial
 SimpleSynthNoiseTutorial
+SynthLevelControlTutorial
+WavetableSynthTutorial
 
 # DSP
 DSPConvolutionTutorial
