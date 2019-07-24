@@ -57,17 +57,7 @@ sed -i s/SynthLevelControlTutorial_01.h/SynthLevelControlTutorial_02.h/ SynthLev
 sed -i s/SynthUsingMidiInputTutorial_01.h/SynthUsingMidiInputTutorial_02.h/ SynthUsingMidiInputTutorial/Source/Main.cpp
 sed -i s/WavetableSynthTutorial_01.h/WavetableSynthTutorial_04.h/ WavetableSynthTutorial/Source/Main.cpp
 
-# Build all projects
-for project in ${projects[@]}; do
-
-  build_dir=$project/Builds/LinuxMakefile
-
-  # Build for Linux if build area exists
-  if [[ -d $build_dir ]]; then
-    echo Building $project with $cpus CPUs
+# Build all projects with a Linux build area
+for build_dir in */Builds/LinuxMakefile; do
     make --directory $build_dir -j $cpus
-  else
-    echo $build_dir does not exist
-  fi
-
 done
