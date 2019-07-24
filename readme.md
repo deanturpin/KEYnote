@@ -24,7 +24,7 @@ Run the tutorials sequentially.
 # Building the IDE
 Get the source.
 ```bash
-git clone --depth=1 https://github.com/WeAreROLI/JUCE
+git clone --depth=1 https://github.com/WeAreROLI/JUCE && \
 cd JUCE
 ```
 
