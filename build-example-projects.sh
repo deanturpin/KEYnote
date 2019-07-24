@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# CPUs available to build with
+cpus=$(nproc)
+
 projects=(
 # Audio
 SynthUsingMidiInputTutorial
@@ -41,7 +44,8 @@ for project in ${projects[@]}; do
 
   # Build for Linux if build area exists
   if [[ -d $build_dir ]]; then
-    make -B --directory $build_dir -j $(nproc)
+    echo Building $project with $cpus CPUs
+    make -B --directory $build_dir -j $cpus
   else
     echo $build_dir does not exist
   fi
