@@ -252,13 +252,6 @@ public:
 
   void drawFrame(Graphics &g) {
 
-    const auto it =
-        std::max_element(std::cbegin(scopeData), std::cend(scopeData));
-    const size_t bin = std::distance(std::cbegin(scopeData), it) + 1;
-
-    const double binResolution = 44100 / (fftSize * 2);
-    const double frequency = bin * binResolution / 4;
-    static std::string peak_note = "NA";
 
     for (int i = 1; i < scopeSize; ++i) {
 
@@ -271,8 +264,42 @@ public:
                   jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f)});
     }
 
-    // Only update if the peak bin is non-zero
-    if (frequency > 0.0)
+    // Get largest bin for this frame
+    const auto it =
+        std::max_element(std::cbegin(scopeData), std::cend(scopeData));
+    const size_t current_peak_bin = std::distance(std::cbegin(scopeData), it);
+
+    // Default note
+    static std::string peak_note = "NA";
+
+    // Create a histogram of recent bins
+    static size_t iterations{0};
+    static std::map<size_t, size_t> peaks;
+
+    // Store recent bins and calculate the 
+    if (iterations < 20) {
+      ++iterations;
+      ++peaks[current_peak_bin];
+    } else {
+
+      // Find the greatest bin
+      const auto max_bin = *std::max_element(
+        peaks.cbegin(), peaks.cend(),
+        [](const auto &a, const auto &b){
+          return a.second < b.second;
+        }
+        );
+
+      for (const auto &[key, value] : peaks)
+        std::cout << key << "\t" << value << "\n";
+
+      std::cout << max_bin.first << " max bin\n";
+
+      // Calculate frequency of bin
+      const double resolution = 44100 / (fftSize * 2);
+      const double frequency = max_bin.first * resolution / 4;
+
+      // Find the closest note for the bin
       for (auto i = notes.cbegin(); i != notes.cend(); ++i)
         if (i->first > frequency) {
 
@@ -289,8 +316,13 @@ public:
           break;
         }
 
+      // Clear down peaks for next time
+      iterations = 0;
+      peaks.clear();
+    }
+
     // Draw the current frequency
-    g.setFont(40);
+    g.setFont(60);
     g.setColour(Colours::red);
     g.drawText(peak_note, getLocalBounds(), Justification::centred, true);
   }
