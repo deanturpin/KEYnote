@@ -260,11 +260,8 @@ public:
     const double frequency = bin * binResolution / 4;
     static std::string peak_note = "NA";
 
-    // std::cout << bin * binResolution << "\n";
-    // std::cout << bin << "/" << fftSize << " " << binResolution
-    //   << " " << scopeSize << " " << fifoIndex << "\n";
-
     for (int i = 1; i < scopeSize; ++i) {
+
       const auto width = getLocalBounds().getWidth();
       const auto height = getLocalBounds().getHeight();
 
@@ -274,15 +271,23 @@ public:
                   jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f)});
     }
 
-    // Only update if it's non-zero
-    if (frequency > 0.0) {
-      for (auto i = notes.cbegin(); i != notes.cend(); ++i) {
+    // Only update if the peak bin is non-zero
+    if (frequency > 0.0)
+      for (auto i = notes.cbegin(); i != notes.cend(); ++i)
         if (i->first > frequency) {
-          peak_note = std::prev(i)->second; // << " " << i->second << "\n";
+
+          // Calculate the gaps between the bin frequency and nearest notes
+          const double lowerGap = frequency - std::prev(i)->first;
+          const double upperGap = i->first - frequency;
+
+          // Report the note closest to the bin frequency
+          if (lowerGap > upperGap)
+            peak_note = i->second;
+          else
+            peak_note = std::prev(i)->second;
+
           break;
         }
-      }
-    }
 
     // Draw the current frequency
     g.setFont(40);
