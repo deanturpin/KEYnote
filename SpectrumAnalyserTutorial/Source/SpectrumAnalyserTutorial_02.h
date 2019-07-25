@@ -254,7 +254,7 @@ public:
 
     const auto it =
         std::max_element(std::cbegin(scopeData), std::cend(scopeData));
-    const auto bin = std::distance(std::cbegin(scopeData), it);
+    const size_t bin = std::distance(std::cbegin(scopeData), it) + 1;
 
     const double binResolution = 44100 / (fftSize * 2);
     const double frequency = bin * binResolution / 4;
