@@ -46,7 +46,7 @@
 
 #pragma once
 
-const std::map<double, std::string> notes {
+const std::map<double, std::string> notes{
 
     // Catch all for lower bound search
     {0.0, "Bx"},
@@ -287,8 +287,7 @@ public:
     // Draw the current frequency
     g.setFont(40);
     g.setColour(Colours::red);
-    g.drawText(peak_note, getLocalBounds(),
-               Justification::centred, true);
+    g.drawText(peak_note, getLocalBounds(), Justification::centred, true);
   }
 
   enum { fftOrder = 11, fftSize = 1 << fftOrder, scopeSize = 512 };
