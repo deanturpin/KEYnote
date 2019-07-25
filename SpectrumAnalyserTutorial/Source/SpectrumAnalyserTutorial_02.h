@@ -284,24 +284,22 @@ public:
     } else {
 
       // Find the greatest bin
-      const auto max_bin = *std::max_element(
+      const auto max_bin = std::max_element(
         peaks.cbegin(), peaks.cend(),
         [](const auto &a, const auto &b){
           return a.second < b.second;
         }
-        );
+        )->first;
 
       for (const auto &[key, value] : peaks)
         std::cout << key << "\t" << std::string(value, '-') << "\n";
 
       // Calculate frequency of bin
       const double resolution = 44100 / fftSize;
-      const double frequency = (max_bin.first + 1) * resolution;
+      const double frequency = (max_bin + 1) * resolution;
 
-      std::cout << max_bin.first << " max bin "
-        << frequency << " frequency "
-        << fftSize << " fftSize "
-        << resolution << " resolution\n";
+      std::cout << max_bin << " max bin\n";
+      std::cout << frequency << " frequency\n";
 
       // Find the closest note for the bin
       for (auto i = notes.cbegin(); i != notes.cend(); ++i)
