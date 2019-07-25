@@ -173,7 +173,7 @@ public:
     setOpaque(true);
     setAudioChannels(2, 0); // we want a couple of input channels but no outputs
     startTimerHz(30);
-    setSize(700, 500);
+    setSize(600, 400);
   }
 
   ~AnalyserComponent() { shutdownAudio(); }
