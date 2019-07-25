@@ -169,7 +169,7 @@ class AnalyserComponent : public AudioAppComponent, private Timer {
 public:
   AnalyserComponent()
       : forwardFFT(fftOrder),
-        window(fftSize, dsp::WindowingFunction<float>::blackman) {
+        window(fftSize, dsp::WindowingFunction<float>::hann) {
     setOpaque(true);
     setAudioChannels(2, 0); // we want a couple of input channels but no outputs
     startTimerHz(30);
@@ -294,11 +294,14 @@ public:
         std::cout << key << "\t" << value << "\n";
 
       // Calculate frequency of bin
-      const double resolution = 44100 / (fftSize * 2);
-      const double frequency = max_bin.first * resolution / 4;
+      const double resolution = 44100 / scopeSize;
+      const double frequency = (max_bin.first + 1) * resolution / 34.4;
+        // / 2.4431818181818183;
 
       std::cout << max_bin.first << " max bin "
         << frequency << " frequency "
+        << fftSize << " fftSize "
+        << scopeSize << " scopeSize "
         << resolution << " resolution\n";
 
       // Find the closest note for the bin
