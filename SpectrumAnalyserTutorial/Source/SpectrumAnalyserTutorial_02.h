@@ -293,11 +293,13 @@ public:
       for (const auto &[key, value] : peaks)
         std::cout << key << "\t" << value << "\n";
 
-      std::cout << max_bin.first << " max bin\n";
-
       // Calculate frequency of bin
       const double resolution = 44100 / (fftSize * 2);
       const double frequency = max_bin.first * resolution / 4;
+
+      std::cout << max_bin.first << " max bin "
+        << frequency << " frequency "
+        << resolution << " resolution\n";
 
       // Find the closest note for the bin
       for (auto i = notes.cbegin(); i != notes.cend(); ++i)
