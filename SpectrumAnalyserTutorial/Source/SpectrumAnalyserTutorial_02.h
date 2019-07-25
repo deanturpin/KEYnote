@@ -266,8 +266,8 @@ public:
 
     // Get largest bin for this frame
     const auto it =
-        std::max_element(std::cbegin(scopeData), std::cend(scopeData));
-    const size_t current_peak_bin = std::distance(std::cbegin(scopeData), it);
+        std::max_element(std::cbegin(fftData), std::cend(fftData));
+    const size_t current_peak_bin = std::distance(std::cbegin(fftData), it);
 
     // Default note
     static std::string peak_note = "NA";
@@ -279,7 +279,8 @@ public:
     // Store recent bins and calculate the 
     if (iterations < 20) {
       ++iterations;
-      ++peaks[current_peak_bin];
+      if (current_peak_bin > 10)
+        ++peaks[current_peak_bin];
     } else {
 
       // Find the greatest bin
@@ -294,9 +295,8 @@ public:
         std::cout << key << "\t" << value << "\n";
 
       // Calculate frequency of bin
-      const double resolution = 44100 / scopeSize;
-      const double frequency = (max_bin.first + 1) * resolution / 34.4;
-        // / 2.4431818181818183;
+      const double resolution = 44100 / fftSize;
+      const double frequency = (max_bin.first + 1) * resolution;
 
       std::cout << max_bin.first << " max bin "
         << frequency << " frequency "
