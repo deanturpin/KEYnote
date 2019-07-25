@@ -54,7 +54,7 @@ class AnalyserComponent   : public AudioAppComponent,
 public:
     AnalyserComponent()
         : forwardFFT (fftOrder),
-          window (fftSize, dsp::WindowingFunction<float>::hann)
+          window (fftSize, dsp::WindowingFunction<float>::blackman)
     {
         setOpaque (true);
         setAudioChannels (2, 0);  // we want a couple of input channels but no outputs
@@ -123,6 +123,7 @@ public:
 
     void drawNextFrameOfSpectrum()
     {
+
         // first apply a windowing function to our data
         window.multiplyWithWindowingTable (fftData, fftSize);
 
@@ -146,16 +147,36 @@ public:
 
     void drawFrame (Graphics& g)
     {
+
+      const auto it = std::max_element(std::cbegin(scopeData), std::cend(scopeData));
+      const auto bin = std::distance(std::cbegin(scopeData), it);
+
+      const double binResolution = 44100 / (fftSize * 2);
+      const double frequency = bin * binResolution / 4;
+      static double display_frequency = frequency;
+
+      // std::cout << bin * binResolution << "\n";
+      // std::cout << bin << "/" << fftSize << " " << binResolution
+      //   << " " << scopeSize << " " << fifoIndex << "\n";
+
         for (int i = 1; i < scopeSize; ++i)
         {
-            auto width  = getLocalBounds().getWidth();
-            auto height = getLocalBounds().getHeight();
+            const auto width  = getLocalBounds().getWidth();
+            const auto height = getLocalBounds().getHeight();
 
             g.drawLine ({ (float) jmap (i - 1, 0, scopeSize - 1, 0, width),
-                                  jmap (scopeData[i - 1], 0.0f, 1.0f, (float) height, 0.0f),
+                                  jmap (scopeData[i - 1], 0.0f, 1.0f, (float) height * 2, 0.0f),
                           (float) jmap (i,     0, scopeSize - 1, 0, width),
                                   jmap (scopeData[i],     0.0f, 1.0f, (float) height, 0.0f) });
         }
+
+        // Only update if it's non-zero
+        if (frequency > 0.0)
+          display_frequency = frequency;
+
+        // Draw the current frequency
+        g.setFont (20);
+        g.drawText (std::to_string(display_frequency), getLocalBounds(), Justification::centred, true);
     }
 
     enum

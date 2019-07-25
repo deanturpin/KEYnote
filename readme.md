@@ -1,4 +1,4 @@
-# Install dependencies.
+# Install dependencies
 ```bash
 sudo apt install -y \
 g++-8 \
@@ -11,7 +11,6 @@ libasound2-dev
 ```
 
 # Build demo projects and Projucer IDE
-
 Clone the library and patch the source so Projucer will run without a Roli account.
 ```bash
 git clone --depth=1 https://github.com/WeAreROLI/JUCE && \
@@ -30,3 +29,5 @@ Build and run Projucer.
 make -j $(nproc) --directory extras/Projucer/Builds/LinuxMakefile && \
 extras/Projucer/Builds/LinuxMakefile/build/Projucer
 ```
+
+![](screenshot.png)

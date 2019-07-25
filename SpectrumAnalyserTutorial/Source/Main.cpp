@@ -7,7 +7,7 @@
 */
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "SpectrumAnalyserTutorial_01.h"
+#include "SpectrumAnalyserTutorial_02.h"
 
 class Application    : public JUCEApplication
 {
