@@ -21,12 +21,12 @@ sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/Juce
 
 Build and run the demo application.
 ```bash
-make -j $(nproc) -C examples/DemoRunner/Builds/LinuxMakefile && \
+make -j $(nproc) --directory examples/DemoRunner/Builds/LinuxMakefile && \
 examples/DemoRunner/Builds/LinuxMakefile/build/DemoRunner
 ```
 
 Build and run Projucer.
 ```bash
-make -j $(nproc) -C extras/Projucer/Builds/LinuxMakefile && \
+make -j $(nproc) --directory extras/Projucer/Builds/LinuxMakefile && \
 extras/Projucer/Builds/LinuxMakefile/build/Projucer
 ```

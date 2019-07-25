@@ -58,6 +58,6 @@ sed -i s/SynthUsingMidiInputTutorial_01.h/SynthUsingMidiInputTutorial_02.h/ Synt
 sed -i s/WavetableSynthTutorial_01.h/WavetableSynthTutorial_04.h/ WavetableSynthTutorial/Source/Main.cpp
 
 # Build all projects with a Linux build area
-for build_dir in */Builds/LinuxMakefile; do
-    make --directory $build_dir -j $cpus
-done
+# for build_dir in */Builds/LinuxMakefile; do
+#     make --directory $build_dir -j $cpus
+# done
