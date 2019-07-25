@@ -44,54 +44,45 @@
 
 *******************************************************************************/
 
-
 #pragma once
 
 //==============================================================================
-class AnalyserComponent   : public AudioAppComponent,
-                            private Timer
-{
+class AnalyserComponent : public AudioAppComponent, private Timer {
 public:
-    AnalyserComponent()
-    {
-        setOpaque (true);
-        setAudioChannels (2, 0);  // we want a couple of input channels but no outputs
-        startTimerHz (30);
-        setSize (700, 500);
-    }
+  AnalyserComponent() {
+    setOpaque(true);
+    setAudioChannels(2, 0); // we want a couple of input channels but no outputs
+    startTimerHz(30);
+    setSize(700, 500);
+  }
 
-    ~AnalyserComponent()
-    {
-        shutdownAudio();
-    }
+  ~AnalyserComponent() { shutdownAudio(); }
 
-    //==============================================================================
-    void prepareToPlay (int, double) override {}
-    void releaseResources() override          {}
+  //==============================================================================
+  void prepareToPlay(int, double) override {}
+  void releaseResources() override {}
 
-    void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override {}
+  void getNextAudioBlock(const AudioSourceChannelInfo &bufferToFill) override {}
 
-    //==============================================================================
-    void paint (Graphics& g) override
-    {
-        g.fillAll (Colours::black);
+  //==============================================================================
+  void paint(Graphics &g) override {
+    g.fillAll(Colours::black);
 
-        g.setOpacity (1.0f);
-        g.setColour (Colours::white);
-        drawFrame (g);
-    }
+    g.setOpacity(1.0f);
+    g.setColour(Colours::white);
+    drawFrame(g);
+  }
 
-    void timerCallback() override {}
+  void timerCallback() override {}
 
-    void pushNextSampleIntoFifo (float sample) noexcept
-    {
-        // if the fifo contains enough data, set a flag to say
-        // that the next frame should now be rendered..
-    }
+  void pushNextSampleIntoFifo(float sample) noexcept {
+    // if the fifo contains enough data, set a flag to say
+    // that the next frame should now be rendered..
+  }
 
-    void drawNextFrameOfSpectrum() {}
-    void drawFrame (Graphics& g)   {}
+  void drawNextFrameOfSpectrum() {}
+  void drawFrame(Graphics &g) {}
 
 private:
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AnalyserComponent)
+  JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AnalyserComponent)
 };
