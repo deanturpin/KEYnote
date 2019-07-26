@@ -27,7 +27,8 @@ make
 
 ![](screenshot.png)
 
-# JUCE IDE and demo runner
+# JUCE applications
+Build and run demo application.
 ```bash
 cd ~/JUCE/ && \
 make -j $(nproc) --directory examples/DemoRunner/Builds/LinuxMakefile && \
