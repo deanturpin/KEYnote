@@ -252,7 +252,6 @@ public:
 
   void drawFrame(Graphics &g) {
 
-
     for (int i = 1; i < scopeSize; ++i) {
 
       const auto width = getLocalBounds().getWidth();
@@ -265,8 +264,7 @@ public:
     }
 
     // Get largest bin for this frame
-    const auto it =
-        std::max_element(std::cbegin(fftData), std::cend(fftData));
+    const auto it = std::max_element(std::cbegin(fftData), std::cend(fftData));
     const size_t current_peak_bin = std::distance(std::cbegin(fftData), it);
 
     // Default note
@@ -276,7 +274,7 @@ public:
     static size_t iterations{0};
     static std::map<size_t, size_t> peaks;
 
-    // Store recent bins and calculate the 
+    // Store recent bins and calculate the
     if (iterations < 20) {
       ++iterations;
       if (current_peak_bin > 10)
@@ -284,22 +282,15 @@ public:
     } else {
 
       // Find the greatest bin
-      const auto max_bin = std::max_element(
-        peaks.cbegin(), peaks.cend(),
-        [](const auto &a, const auto &b){
-          return a.second < b.second;
-        }
-        )->first;
-
-      // for (const auto &[key, value] : peaks)
-      //   std::cout << key << "\t" << std::string(value, '-') << "\n";
+      const auto max_bin = std::max_element(peaks.cbegin(), peaks.cend(),
+                                            [](const auto &a, const auto &b) {
+                                              return a.second < b.second;
+                                            })
+                               ->first;
 
       // Calculate frequency of bin
       const double resolution = 44100 / fftSize;
       const double frequency = (max_bin + 1) * resolution;
-
-      // std::cout << max_bin << " max bin\n";
-      // std::cout << frequency << " frequency\n";
 
       // Find the closest note for the bin
       for (auto i = notes.cbegin(); i != notes.cend(); ++i)
@@ -310,10 +301,10 @@ public:
           const double upperGap = i->first - frequency;
 
           // Report the note closest to the bin frequency
-          if (lowerGap > upperGap)
-            peak_note = i->second + " " + std::to_string(frequency);
-          else
-            peak_note = std::prev(i)->second + " " + std::to_string(frequency);
+          peak_note = (lowerGap > upperGap ? peak_note = i->second
+                                           : peak_note = std::prev(i)->second) +
+                      " | " + std::to_string(static_cast<uint32_t>(frequency)) +
+                      "Hz";
 
           break;
         }
