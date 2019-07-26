@@ -1,3 +1,5 @@
+![](screenshot.png)
+
 # Install dependencies
 ```bash
 sudo apt install -y \
@@ -24,8 +26,6 @@ sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/Juce
 cd ~/juce-example-projects/ && \
 make
 ```
-
-![](screenshot.png)
 
 # JUCE applications
 Build and run demo application.
