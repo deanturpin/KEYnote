@@ -19,8 +19,17 @@ cd JUCE && \
 sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/JuceLibraryCode/AppConfig.h
 ```
 
-Build and run the demo application.
+# Build and run this demo
 ```bash
+cd ~/juce-example-projects/ && \
+make
+```
+
+![](screenshot.png)
+
+# JUCE IDE and demo runner
+```bash
+cd ~/JUCE/ && \
 make -j $(nproc) --directory examples/DemoRunner/Builds/LinuxMakefile && \
 examples/DemoRunner/Builds/LinuxMakefile/build/DemoRunner
 ```
@@ -30,5 +39,3 @@ Build and run Projucer.
 make -j $(nproc) --directory extras/Projucer/Builds/LinuxMakefile && \
 extras/Projucer/Builds/LinuxMakefile/build/Projucer
 ```
-
-![](screenshot.png)
