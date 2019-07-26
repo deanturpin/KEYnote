@@ -20,7 +20,7 @@ public:
   const String getApplicationVersion() override { return "1.0.0"; }
 
   void initialise(const String &) override {
-    mainWindow.reset(new MainWindow("KEY", new AnalyserComponent(), *this));
+    mainWindow.reset(new MainWindow("KEYnote", new AnalyserComponent(), *this));
   }
   void shutdown() override { mainWindow = nullptr; }
 
