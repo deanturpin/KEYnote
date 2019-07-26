@@ -270,7 +270,7 @@ public:
     const size_t current_peak_bin = std::distance(std::cbegin(fftData), it);
 
     // Default note
-    static std::string peak_note = "NA";
+    static std::string peak_note = "hello";
 
     // Create a histogram of recent bins
     static size_t iterations{0};
@@ -291,15 +291,15 @@ public:
         }
         )->first;
 
-      for (const auto &[key, value] : peaks)
-        std::cout << key << "\t" << std::string(value, '-') << "\n";
+      // for (const auto &[key, value] : peaks)
+      //   std::cout << key << "\t" << std::string(value, '-') << "\n";
 
       // Calculate frequency of bin
       const double resolution = 44100 / fftSize;
       const double frequency = (max_bin + 1) * resolution;
 
-      std::cout << max_bin << " max bin\n";
-      std::cout << frequency << " frequency\n";
+      // std::cout << max_bin << " max bin\n";
+      // std::cout << frequency << " frequency\n";
 
       // Find the closest note for the bin
       for (auto i = notes.cbegin(); i != notes.cend(); ++i)
@@ -311,9 +311,9 @@ public:
 
           // Report the note closest to the bin frequency
           if (lowerGap > upperGap)
-            peak_note = i->second;
+            peak_note = i->second + " " + std::to_string(frequency);
           else
-            peak_note = std::prev(i)->second;
+            peak_note = std::prev(i)->second + " " + std::to_string(frequency);
 
           break;
         }
