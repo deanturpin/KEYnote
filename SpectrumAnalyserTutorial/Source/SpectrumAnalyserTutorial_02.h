@@ -252,6 +252,7 @@ public:
 
   void drawFrame(Graphics &g) {
 
+    // Draw spectrum
     for (int i = 1; i < scopeSize; ++i) {
 
       const auto width = getLocalBounds().getWidth();
@@ -263,25 +264,29 @@ public:
                   jmap(scopeData[i], 0.0f, 1.0f, (float)height, 0.0f)});
     }
 
-    // Get largest bin for this frame
+    // Get largest FFT bin for this frame
     const auto it = std::max_element(std::cbegin(fftData), std::cend(fftData));
     const size_t current_peak_bin = std::distance(std::cbegin(fftData), it);
 
-    // Default note
+    // Default note (before we've measured anything)
     static std::string peak_note = "hello";
 
-    // Create a histogram of recent bins
+    // Create a histogram of recent peaks
     static size_t iterations{0};
     static std::map<size_t, size_t> peaks;
 
-    // Store recent bins and calculate the
+    // Store current bin and repeat for a few iterations to smooth out noisy
+    // results
     if (iterations < 20) {
       ++iterations;
+
+      // Ignore the noisy lower bins
       if (current_peak_bin > 10)
         ++peaks[current_peak_bin];
+
     } else {
 
-      // Find the greatest bin
+      // Once the batch is complete find the greatest bin
       const auto max_bin = std::max_element(peaks.cbegin(), peaks.cend(),
                                             [](const auto &a, const auto &b) {
                                               return a.second < b.second;
@@ -314,7 +319,7 @@ public:
       peaks.clear();
     }
 
-    // Draw the current frequency
+    // Display the calculated frequency and note
     g.setFont(60);
     g.setColour(Colours::red);
     g.drawText(peak_note, getLocalBounds(), Justification::centred, true);
