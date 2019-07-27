@@ -308,8 +308,7 @@ public:
           // Report the note closest to the bin frequency
           peak_note = (lowerGap > upperGap ? peak_note = i->second
                                            : peak_note = std::prev(i)->second) +
-                      " | " + std::to_string(static_cast<uint32_t>(frequency)) +
-                      "Hz";
+                      " | " + std::to_string(static_cast<uint32_t>(frequency));
 
           break;
         }
