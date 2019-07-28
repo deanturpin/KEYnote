@@ -12,7 +12,7 @@ ladspa-sdk \
 libasound2-dev
 ```
 
-# Build demo projects and Projucer IDE
+# Download the source
 Clone the repos and patch the source so Projucer will run without a Roli account.
 ```bash
 git clone --depth=1 https://github.com/deanturpin/KEYnote && \
