@@ -15,7 +15,7 @@ libasound2-dev
 # Build demo projects and Projucer IDE
 Clone the repos and patch the source so Projucer will run without a Roli account.
 ```bash
-git clone --depth=1 https://github.com/deanturpin/juce-example-projects && \
+git clone --depth=1 https://github.com/deanturpin/KEYnote && \
 git clone --depth=1 https://github.com/WeAreROLI/JUCE && \
 cd JUCE && \
 sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/JuceLibraryCode/AppConfig.h
@@ -23,7 +23,7 @@ sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/Juce
 
 # Build and run this demo
 ```bash
-cd ~/juce-example-projects/ && \
+cd ~/KEYnote/ && \
 make
 ```
 
