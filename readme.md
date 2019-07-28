@@ -21,14 +21,14 @@ cd JUCE && \
 sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/JuceLibraryCode/AppConfig.h
 ```
 
-# Build and run this demo
+# Build and run KEYnote
 ```bash
 cd ~/KEYnote/ && \
 make
 ```
 
 # JUCE applications
-Build and run demo application.
+Build and run the JUCE demo application.
 ```bash
 cd ~/JUCE/ && \
 make -j $(nproc) --directory examples/DemoRunner/Builds/LinuxMakefile && \
