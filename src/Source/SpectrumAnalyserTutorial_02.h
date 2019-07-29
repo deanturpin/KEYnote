@@ -68,7 +68,7 @@ public:
 
   void getNextAudioBlock(const AudioSourceChannelInfo &bufferToFill) override {
     if (bufferToFill.buffer->getNumChannels() > 0) {
-      auto *channelData =
+      const auto *channelData =
           bufferToFill.buffer->getReadPointer(0, bufferToFill.startSample);
 
       for (auto i = 0; i < bufferToFill.numSamples; ++i)
@@ -117,18 +117,19 @@ public:
     // then render our FFT data..
     forwardFFT.performFrequencyOnlyForwardTransform(fftData);
 
-    auto mindB = -100.0f;
-    auto maxdB = 0.0f;
+    const auto mindB = -100.0f;
+    const auto maxdB = 0.0f;
 
     for (int i = 0; i < scopeSize; ++i) {
-      auto skewedProportionX =
+      const auto skewedProportionX =
           1.0f - std::exp(std::log(1.0f - i / (float)scopeSize) * 0.2f);
-      auto fftDataIndex =
+      const auto fftDataIndex =
           jlimit(0, fftSize / 2, (int)(skewedProportionX * fftSize / 2));
-      auto level = jmap(jlimit(mindB, maxdB,
-                               Decibels::gainToDecibels(fftData[fftDataIndex]) -
-                                   Decibels::gainToDecibels((float)fftSize)),
-                        mindB, maxdB, 0.0f, 1.0f);
+      const auto level =
+          jmap(jlimit(mindB, maxdB,
+                      Decibels::gainToDecibels(fftData[fftDataIndex]) -
+                          Decibels::gainToDecibels((float)fftSize)),
+               mindB, maxdB, 0.0f, 1.0f);
 
       scopeData[i] = level;
     }
