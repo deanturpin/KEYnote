@@ -205,7 +205,7 @@ public:
 
     // Display the calculated frequency and note
     g.setFont(60);
-    g.setColour(Colours::blue);
+    g.setColour(Colours::yellow);
     g.drawText(peak_note, getLocalBounds(), Justification::centred, true);
   }
 
