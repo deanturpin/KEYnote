@@ -1,6 +1,7 @@
 ![](screenshot.png)
 
-Screenshot is displaying the major 3rd of an A chord.
+Screenshot is highlighting the major 3rd of an A chord: 440, 550, 660. Note the
+FFT bin is not a precise pitch so the closest concert pitch is displayed.
 
 # Install dependencies
 ```bash
