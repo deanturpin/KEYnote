@@ -1,5 +1,7 @@
 ![](screenshot.png)
 
+Screenshot is displaying the major 3rd of an A chord.
+
 # Install dependencies
 ```bash
 sudo apt install -y \
