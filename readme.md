@@ -6,7 +6,7 @@ displayed.
 
 # Install dependencies
 ```bash
-sudo apt install -y \
+sudo apt install --yes \
 g++-9 \
 make \
 libfreetype6-dev \
