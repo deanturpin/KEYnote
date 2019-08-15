@@ -7,7 +7,7 @@ displayed.
 # Install dependencies
 ```bash
 sudo apt install -y \
-g++-8 \
+g++-9 \
 make \
 libfreetype6-dev \
 libxinerama-dev \
