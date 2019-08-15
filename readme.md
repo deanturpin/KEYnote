@@ -17,12 +17,12 @@ libasound2-dev
 ```
 
 # Download the source
-Clone the repos and patch the source so Projucer will run without a Roli account.
+Clone the repos into your home directory and patch the source so Projucer will run without a Roli account.
 ```bash
+cd && \
 git clone --depth=1 https://github.com/deanturpin/KEYnote && \
 git clone --depth=1 https://github.com/WeAreROLI/JUCE && \
-cd JUCE && \
-sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ extras/Projucer/JuceLibraryCode/AppConfig.h
+sed -i s/JUCER_ENABLE_GPL_MODE\ 0/JUCER_ENABLE_GPL_MODE\ 1/ ~/JUCE/extras/Projucer/JuceLibraryCode/AppConfig.h
 ```
 
 # Build and run KEYnote
